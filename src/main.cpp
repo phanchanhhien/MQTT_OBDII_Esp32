@@ -36,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-  uint32_t ts = millis();
+ // uint32_t ts = millis();
   digitalWrite(PIN_LED, HIGH);
   // put your main code here, to run repeatedly:
 #if CONNECT_OBD
