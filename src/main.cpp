@@ -12,8 +12,27 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 * THE SOFTWARE.
 ******************************************************************************/
-
+////library for OBDII interface 
 #include <FreematicsPlus.h>
+/*
+///Library for GSM_MODEM_MQTT
+// Select your modem:
+#define TINY_GSM_MODEM_SIM800
+//#define TINY_GSM_MODEM_SIM900
+//#define TINY_GSM_MODEM_A6
+//#define TINY_GSM_MODEM_M590
+
+#include <TinyGsmClient.h>
+#include <PubSubClient.h>
+
+// Your GPRS credentials
+// Leave empty, if missing user or pass
+const char apn[]  = "v-internet"; //Vietnam / Viettel 
+//const char apn[]  = "m-wap"; //Vietnam / Mobifone 
+
+const char user[] = "";
+const char pass[] = "";
+*/
 
 #define PIN_LED 4
 
@@ -29,7 +48,7 @@ void setup() {
   digitalWrite(PIN_LED, HIGH);
   delay(1000);
   digitalWrite(PIN_LED, LOW);
-  Serial.begin(115200);
+  Serial.begin(9600);
   byte ver = obd.begin();
   Serial.print("OBD Firmware Version ");
   Serial.println(ver);
