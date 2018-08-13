@@ -13,8 +13,9 @@
 * THE SOFTWARE.
 ******************************************************************************/
 ////library for OBDII interface 
-#include <FreematicsPlus.h>
-/*
+#include <FreematicsPlus.h> //OBD2 library for Freematics development board
+
+
 ///Library for GSM_MODEM_MQTT
 // Select your modem:
 #define TINY_GSM_MODEM_SIM800
@@ -32,32 +33,132 @@ const char apn[]  = "v-internet"; //Vietnam / Viettel
 
 const char user[] = "";
 const char pass[] = "";
-*/
 
+
+HardwareSerial Serial1(1);
+
+#define SerialAT Serial1
+
+
+
+const char* broker = "mqtt.mydevices.com";
+
+const char* topicLed = "GsmClientTest/led";
+const char* topicInit = "GsmClientTest/init";
+const char* topicLedStatus = "GsmClientTest/ledStatus";
+const char* _user = "bb0ca970-46df-11e7-afce-8d5fd2a310a7";    
+const char* _pass = "92a63d91d0f06220df912254da9b338ac7e9aa7c";
+const char* _ClientID = "b44fa3a0-58c1-11e7-9118-bfd202a30a41";
 #define PIN_LED 4
 
 COBDSPI obd;
 bool connected = false;
+bool ledStatus = false;
 unsigned long count = 0;
-
+unsigned long lastReconnectAttempt;
+uint16_t MQTT_port = 1883; 
 #define CONNECT_OBD 1
+////
+TinyGsm modem(SerialAT);
+TinyGsmClient client(modem);
+PubSubClient mqtt(client);
+///
+/////////////////////////////////////
+void mqtt_Callback(char* topic, byte* payload, unsigned int len) {
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("]: ");
+  Serial.write(payload, len);
+  Serial.println();
 
+  // Only proceed if incoming message's topic matches
+  if (String(topic) == topicLed) {
+    ledStatus = !ledStatus;
+   // digitalWrite(LED_PIN, ledStatus);
+    mqtt.publish(topicLedStatus, ledStatus ? "1" : "0");
+  }
+}
+/////
 void setup() {
-  // put your setup code here, to run once:
   pinMode(PIN_LED, OUTPUT);
   digitalWrite(PIN_LED, HIGH);
   delay(1000);
   digitalWrite(PIN_LED, LOW);
   Serial.begin(9600);
+  //config OBD interface
   byte ver = obd.begin();
   Serial.print("OBD Firmware Version ");
   Serial.println(ver);
-}
+  //Config Modem interface
+  SerialAT.begin(115200,SERIAL_8N1,16,17,false);//hardware UART #1 in Esp32
+  delay(3000);
+  modem.restart();
+  delay(3000);
 
+  // Restart takes quite some time
+  // To skip it, call init() instead of restart()
+  Serial.println("Initializing modem...");
+  modem.restart();
+    // Unlock your SIM card with a PIN
+  //modem.simUnlock("1234");
+
+  Serial.print("Waiting for network...");
+  if (!modem.waitForNetwork()) {
+    Serial.println(" fail");
+    while (true);
+  }
+  Serial.println(" OK");
+
+  Serial.print("Connecting to ");
+  Serial.print(apn);
+  if (!modem.gprsConnect(apn, user, pass)) {
+    Serial.println(" fail");
+    while (true);
+  }
+  Serial.println(" OK");
+
+  // MQTT Broker setup
+  mqtt.setServer(broker, MQTT_port);
+  mqtt.setCallback(mqtt_Callback);
+}
+/////
+
+///////////////
+
+boolean mqttConnect() {
+  Serial.print("Connecting to ");
+  Serial.print(broker);
+  if (!mqtt.connect(_ClientID,_user,_pass)) {
+    Serial.println(" fail");
+    return false;
+  }
+  Serial.println(" OK");
+  mqtt.publish(topicInit, "GsmClientTest started");
+  mqtt.subscribe(topicLed);
+  return mqtt.connected();
+}
+////
+void MQTT_processing(){
+  if (mqtt.connected()) {
+    mqtt.loop();
+  } else {
+    // Reconnect every 10 seconds
+    unsigned long t = millis();
+    if (t - lastReconnectAttempt > 10000L) {
+      lastReconnectAttempt = t;
+      if (mqttConnect()) {
+        lastReconnectAttempt = 0;
+      }
+    }
+  }
+}
+/////////////////////
 void loop() {
  // uint32_t ts = millis();
   digitalWrite(PIN_LED, HIGH);
-  // put your main code here, to run repeatedly:
+  MQTT_processing();
+
+
 #if CONNECT_OBD
   if (!connected) {
     digitalWrite(PIN_LED, HIGH);
@@ -105,3 +206,4 @@ void loop() {
 
   delay(100);
 }
+///////////////////////////////////////////
