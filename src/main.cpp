@@ -23,8 +23,7 @@
 //#define TINY_GSM_MODEM_A6
 //#define TINY_GSM_MODEM_M590
 
-#include <TinyGsmClient.h>
-#include <PubSubClient.h>
+
 
 // Your GPRS credentials
 // Leave empty, if missing user or pass
@@ -33,22 +32,24 @@ const char apn[]  = "v-internet"; //Vietnam / Viettel
 
 const char user[] = "";
 const char pass[] = "";
+#include <TinyGsmClient.h>
+#include <PubSubClient.h>
 
-
-HardwareSerial Serial1(1);
+//HardwareSerial SerialNum1(1);
+//#define SerialAT Serial1
 
 #define SerialAT Serial1
 
 
 
 const char* broker = "mqtt.mydevices.com";
-
 const char* topicLed = "GsmClientTest/led";
 const char* topicInit = "GsmClientTest/init";
 const char* topicLedStatus = "GsmClientTest/ledStatus";
 const char* _user = "bb0ca970-46df-11e7-afce-8d5fd2a310a7";    
 const char* _pass = "92a63d91d0f06220df912254da9b338ac7e9aa7c";
 const char* _ClientID = "b44fa3a0-58c1-11e7-9118-bfd202a30a41";
+
 #define PIN_LED 4
 
 COBDSPI obd;
@@ -78,6 +79,43 @@ void mqtt_Callback(char* topic, byte* payload, unsigned int len) {
     mqtt.publish(topicLedStatus, ledStatus ? "1" : "0");
   }
 }
+///
+void Starting_modem(){
+bool Network_Connected = false; 
+bool GSM_Connected = false;   
+while (!Network_Connected) {
+  while (!GSM_Connected) {
+    Serial.println("Initializing modem...");
+    modem.restart();
+    delay(3000);
+  
+  String modemInfo = modem.getModemInfo();
+  Serial.println(String("Modem info:")+modemInfo);
+    // Unlock your SIM card with a PIN
+  //modem.simUnlock("1234");
+
+     Serial.println("Waiting for GSM network...");
+       if (!modem.waitForNetwork()) {
+      Serial.println(" fail...Restart modem..");
+      
+         }
+      else GSM_Connected = true; 
+
+    }
+  if (modem.isNetworkConnected()) {
+    Serial.println("Network connected");
+  }
+  Serial.println(" OK");
+  
+  Serial.print("Connecting to ");
+  Serial.print(apn);
+  if (!modem.gprsConnect(apn, user, pass)) {
+    Serial.println(" GPRS fail...restart..");
+    
+    }
+  }
+  Serial.println(" GPRS Connected");
+}
 /////
 void setup() {
   pinMode(PIN_LED, OUTPUT);
@@ -92,30 +130,14 @@ void setup() {
   //Config Modem interface
   SerialAT.begin(115200,SERIAL_8N1,16,17,false);//hardware UART #1 in Esp32
   delay(3000);
-  modem.restart();
-  delay(3000);
-
+  #ifdef PIN_BEE_PWR
+	pinMode(PIN_BEE_PWR, OUTPUT);
+	digitalWrite(PIN_BEE_PWR, HIGH);
+  #endif
+  delay(10000);
   // Restart takes quite some time
   // To skip it, call init() instead of restart()
-  Serial.println("Initializing modem...");
-  modem.restart();
-    // Unlock your SIM card with a PIN
-  //modem.simUnlock("1234");
-
-  Serial.print("Waiting for network...");
-  if (!modem.waitForNetwork()) {
-    Serial.println(" fail");
-    while (true);
-  }
-  Serial.println(" OK");
-
-  Serial.print("Connecting to ");
-  Serial.print(apn);
-  if (!modem.gprsConnect(apn, user, pass)) {
-    Serial.println(" fail");
-    while (true);
-  }
-  Serial.println(" OK");
+  Starting_modem();
 
   // MQTT Broker setup
   mqtt.setServer(broker, MQTT_port);
