@@ -22,7 +22,8 @@
 //#define TINY_GSM_MODEM_SIM900
 //#define TINY_GSM_MODEM_A6
 //#define TINY_GSM_MODEM_M590
-
+//#define DUMP_AT_COMMANDS
+#define DUMP_AT_COMMANDS
 
 
 // Your GPRS credentials
@@ -37,8 +38,19 @@ const char pass[] = "";
 
 //HardwareSerial SerialNum1(1);
 //#define SerialAT Serial1
-
+#define SerialMon Serial
 #define SerialAT Serial1
+
+#define TINY_GSM_DEBUG SerialMon
+
+#ifdef DUMP_AT_COMMANDS
+  #include <StreamDebugger.h>
+  StreamDebugger debugger(SerialAT, SerialMon);
+  TinyGsm modem(debugger);
+#else
+  TinyGsm modem(SerialAT);
+#endif
+
 
 
 
@@ -60,7 +72,7 @@ unsigned long lastReconnectAttempt;
 uint16_t MQTT_port = 1883; 
 #define CONNECT_OBD 1
 ////
-TinyGsm modem(SerialAT);
+//TinyGsm modem(SerialAT);
 TinyGsmClient client(modem);
 PubSubClient mqtt(client);
 ///
@@ -122,19 +134,20 @@ void setup() {
   digitalWrite(PIN_LED, HIGH);
   delay(1000);
   digitalWrite(PIN_LED, LOW);
-  Serial.begin(9600);
+  //Serial.begin(9600);
+    SerialMon.begin(115200);
+
   //config OBD interface
   byte ver = obd.begin();
   Serial.print("OBD Firmware Version ");
   Serial.println(ver);
   //Config Modem interface
   SerialAT.begin(115200,SERIAL_8N1,16,17,false);//hardware UART #1 in Esp32
-  delay(3000);
   #ifdef PIN_BEE_PWR
 	pinMode(PIN_BEE_PWR, OUTPUT);
 	digitalWrite(PIN_BEE_PWR, HIGH);
   #endif
-  delay(10000);
+  delay(15000);
   // Restart takes quite some time
   // To skip it, call init() instead of restart()
   Starting_modem();
