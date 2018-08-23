@@ -43,8 +43,8 @@ HardwareSerial SerialNum2(1);
 #define SerialMon Serial
 #define SerialAT SerialNum2
 
-//#define TINY_GSM_DEBUG SerialMon    //comment out this line to debug data streamming
-#define DUMP_AT_COMMANDS 1
+#define TINY_GSM_DEBUG SerialMon    
+//#define DUMP_AT_COMMANDS 1 //comment out this line to debug data streammings
 #ifdef DUMP_AT_COMMANDS
   #include <StreamDebugger.h>
   StreamDebugger debugger(SerialAT, SerialMon);
