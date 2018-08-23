@@ -1,0 +1,664 @@
+
+ATI
+
+Call Ready
+
+SIM800 R14.18
+
+OK
+Modem info:Call Ready  SIM800 R14.18
+Waiting for GSM network...
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
+SMS Ready
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,2
+
+OK
+AT+CREG?
+
++CREG: 0,1
+
+OK
+AT+CREG?
+
++CREG: 0,1
+
+OK
+Telecom Network connected
+ OK
+Connecting to v-internet
+AT+CIPSHUT
+
+SHUT OK
+AT+CGATT=0
+
+OK
+AT+SAPBR=3,1,"Contype","GPRS"
+
+OK
+AT+SAPBR=3,1,"APN","v-internet"
+
+OK
+AT+CGDCONT=1,"IP","v-internet"
+
+OK
+AT+CGACT=1,1
+
+OK
+AT+SAPBR=1,1
+
+OK
+AT+SAPBR=2,1
+
++SAPBR: 1,1,"10.125.61.213"
+
+OK
+AT+CGATT=1
+
+OK
+AT+CIPMUX=1
+
+OK
+AT+CIPQSEND=1
+
+OK
+AT+CIPRXGET=1
+
+OK
+AT+CSTT="v-internet","",""
+
+OK
+AT+CIICR
+
+OK
+AT+CIFSR;E0
+
+10.125.61.213
+
+OK
+AT+CDNSCFG="8.8.8.8","8.8.4.4"
+
+OK
+GPRS  connected
+ IoT System Connected
+MQTT processing..
+disconnected...try to reconnect..
+Connecting to mqtt.mydevices.comAT+CIPCLOSE=1
+
+ERROR
+AT+CIPSSL=0
+
+OK
+AT+CIPSTART=1,"TCP","mqtt.mydevices.com",1883
+
+OK
+
+1, CONNECT OK
+AT+CIPSEND=1,131
+
+>␐�␁␀␄MQTT␄�␀␏␀$b44fa3a0-58c1-11e7-9118-bfd202a30a41␀$bb0ca970-46df-11e7-afce-8d5fd2a310a7␀(92a63d91d0f06220df912254da9b338ac7e9aa7c
+DATA ACCEPT:1,131
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,4
+
+OK
+AT+CIPRXGET=2,1,63
+
++CIPRXGET: 2,1,4,0
+ ␂␀␀
+OK
+ OK
+AT+CIPSEND=1,95
+
+>0]␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/20
+DATA ACCEPT:1,95
+Write packet: success
+Reconnect successfully!
+send value: 0
+AT+CIPSEND=1,95
+
+>0]␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/10
+DATA ACCEPT:1,95
+Write packet: success
+...Sent OK
+send value: 100
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1100
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 200
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1200
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 300
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1300
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 400
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1400
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 500
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1500
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 600
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1600
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 700
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1700
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 800
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1800
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 900
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1900
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+MQTT processing..
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,2
+
+>�␀
+DATA ACCEPT:1,2
+connection good
+send value: 0
+AT+CIPSEND=1,95
+
+>0]␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/10
+DATA ACCEPT:1,95
+Write packet: success
+...Sent OK
+send value: 100
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,0
+
+OK
+AT+CIPSTATUS=1
+
++CIPSTATUS: 1,0,"TCP","52.200.177.238","1883","CONNECTED"
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1100
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 200
+AT+CIPRXGET=4,1
+
++CIPRXGET: 1,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1200
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 300
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1300
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 400
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1400
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 500
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1500
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 600
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1600
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 700
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1700
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 800
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1800
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+send value: 900
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPSEND=1,97
+
+>0_␀Zv1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1900
+DATA ACCEPT:1,97
+Write packet: success
+...Sent OK
+MQTT processing..
+AT+CIPRXGET=4,1
+
++CIPRXGET: 4,1,2
+
+OK
+AT+CIPCLOSE=1
+
+1, CLOSE OK
+connection good
+send value: 0
+AT+CIPSEND=1,95
+
+ERROR
+Write packet: fail
+...Fail
+send value: 100
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 200
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 300
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 400
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 500
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 600
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 700
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 800
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 900
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+MQTT processing..
+AT+CIPCLOSE=1
+
+ERROR
+connection good
+send value: 0
+AT+CIPSEND=1,95
+
+ERROR
+Write packet: fail
+...Fail
+send value: 100
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 200
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 300
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 400
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 500
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 600
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 700
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 800
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 900
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+MQTT processing..
+AT+CIPCLOSE=1
+
+ERROR
+connection good
+send value: 0
+AT+CIPSEND=1,95
+
+ERROR
+Write packet: fail
+...Fail
+send value: 100
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
+send value: 200
+AT+CIPSEND=1,97
+
+ERROR
+Write packet: fail
+...Fail
