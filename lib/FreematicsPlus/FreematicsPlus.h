@@ -4,7 +4,8 @@
 * Visit https://freematics.com for more information
 * (C)2017-2018 Developed by Stanley Huang <stanley@freematics.com.au>
 *************************************************************************/
-
+#ifndef Freematics_Plus_H 
+#define Freematics_Plus_H
 #include <Arduino.h>
 #include "esp_system.h"
 #include "esp_partition.h"
@@ -93,3 +94,4 @@ public:
   // toggle xBee module power
   void xbTogglePower();
 };
+#endif
