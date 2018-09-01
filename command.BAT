@@ -1,0 +1,1 @@
+decoder.py -e .pioenvs/esp32dev/firmware.elf myStackTrace.txt

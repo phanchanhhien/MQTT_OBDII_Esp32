@@ -1,0 +1,10 @@
+Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400d2884  PS      : 0x00060d33  A0      : 0x800d26a9  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x00002710
+A6      : 0x00000000  A7      : 0x000075c0  A8      : 0x00000024  A9      : 0x00000000
+A10     : 0x00000024  A11     : 0x00000020  A12     : 0x00000001  A13     : 0x00000001
+A14     : 0x00060d20  A15     : 0x00000000  SAR     : 0x0000000a  EXCCAUSE: 0x0000001d
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400d2884:0x3ffb1e50 0x400d26a6:0x3ffb1e90 0x400d24a3:0x3ffb1ec0 0x400d2b2e:0x3ffb1ee0 0x400d146b:0x3ffb1f60 0x400ea962:0x3ffb1fa0

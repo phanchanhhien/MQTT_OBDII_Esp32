@@ -61,11 +61,10 @@ const char* _pass = "92a63d91d0f06220df912254da9b338ac7e9aa7c";
 const char* _ClientID = "b44fa3a0-58c1-11e7-9118-bfd202a30a41";
 const char* rpmTopic = "v1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/1";
 const char* battTopic = "v1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/2";
-const char* ledStateTopic="v1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/3";
+const char* fuelRateTopic="v1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/3";
+
 const char* sampleTopic="v1/bb0ca970-46df-11e7-afce-8d5fd2a310a7/things/b44fa3a0-58c1-11e7-9118-bfd202a30a41/data/4";
 ///////////////////////////
-
-
 ///////////////////////////
 #define PIN_LED 4
 
@@ -143,9 +142,6 @@ uint8_t connErrors = 0;
 int fileid = 0;
 //static uint8_t lastSizeKB = 0;
 
-uint32_t lastCmdToken = 0;
-String serialCommand;
-
 byte ledMode = 0;
 class State {
 public:
@@ -181,8 +177,8 @@ void printTimeoutStats()
 {
   Serial.print("Timeouts: OBD:");
   Serial.print(timeoutsOBD);
- // Serial.print(" Network:");
- // Serial.println(timeoutsNet);
+// Serial.print(" Network:");
+// Serial.println(timeoutsNet);
 }
 //////////////////////////////////////////////////////////////////
 void Starting_modem(){
@@ -291,7 +287,7 @@ void processOBD()
 void init_system(){
 
 }
-void test_MQTT_cayenne();
+//void test_MQTT_cayenne();
 /////
 void setup() {
   pinMode(PIN_LED, OUTPUT);
@@ -323,7 +319,7 @@ void setup() {
   mqtt.setServer(broker, MQTT_port);
   mqtt.setCallback(mqtt_Callback);
 
-  test_MQTT_cayenne();
+ // test_MQTT_cayenne();
 }
 /////
 
@@ -334,7 +330,9 @@ return mqtt.publish(topic,value ? "1" : "0");
 }
 ///////////////////////
 bool MQTT_pub_int(const char* topic,int value) {
-char str[1 + 8 * sizeof(value)];
+//char str[1 + 8 * sizeof(value)];
+char str[20];
+
 utoa(value, str, 10);
 return mqtt.publish(topic,str);
 }
@@ -368,7 +366,7 @@ bool mqttConnect() {
   }
   Serial.println(" OK");
  // mqtt.publish(topicInit, "GsmClientTest started");
-  MQTT_pub_bool(ledStateTopic,connected);// publish OBD connection status
+ // MQTT_pub_bool(ledStateTopic,connected);// publish OBD connection status
  // mqtt.subscribe(topicLed);
   return mqtt.connected();
 }
@@ -436,10 +434,8 @@ void test_MQTT_cayenne(){
 /////////////////////////////////////////
 void loop() {
  // uint32_t ts = millis();
-  digitalWrite(PIN_LED, HIGH);
-  test_MQTT_cayenne();
- // MQTT_processing();  // Make sure server connection 
-
+digitalWrite(PIN_LED, HIGH);
+  
 //#if CONNECT_OBD
   if (!connected) {
     digitalWrite(PIN_LED, HIGH);
@@ -455,39 +451,39 @@ void loop() {
   }
 //#endif
   int value;
-  Serial.print('[');
+  Serial.print("[");
   Serial.print(millis());
   Serial.print("] #");
   Serial.print(count++);
 
   if (obd.readPID(PID_RPM, value)) {
     Serial.print(" RPM:");
-    Serial.print(value);
-    MQTT_pub_int(rpmTopic,value);
+    Serial.println(value);
+// MQTT_pub_int(rpmTopic,value);
   }
   if (obd.readPID(PID_SPEED, value)) {
     Serial.print(" SPEED:");
-    Serial.print(value);
+    Serial.println(value);
   }
-
+  if (obd.readPID(PID_ENGINE_FUEL_RATE,value)){
+    Serial.print("Fuel Rate in l/h: ");
+    Serial.print(value);
+ // MQTT_pub_int(fuelRateTopic,value);
+  }
   float volt = obd.getVoltage();
   Serial.print(" BATTERY:");
   Serial.print(volt);
   Serial.print('V');
-  MQTT_pub_float(battTopic,volt);
-#ifdef ESP32
-  int temp = (int)readChipTemperature() * 165 / 255 - 40;
-  Serial.print(" CPU TEMP:");
-  Serial.print(temp);
-#endif
-  Serial.println();
+ // MQTT_pub_float(battTopic,volt);
+ mqtt.publish(battTopic,makeFloatData("batt","v",(float)volt));
+
   if (obd.errors > 2) {
     Serial.println("OBD disconnected");
     connected = false;
     obd.reset();
   }
+  MQTT_processing();  // Make sure server connection 
   digitalWrite(PIN_LED, LOW);
-
- delay(2000);
+  delay(1000);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////

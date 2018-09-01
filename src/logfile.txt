@@ -10,3 +10,68 @@ EXCVADDR: 0x00000000  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xff
 Backtrace: 0x4000c3f5:0x3ffb1b20 0x400e40d5:0x3ffb1b40 0x400df57a:0x3ffb1b70 0x400dc089:0x3ffb1e80 0x400d145d:0x3ffb1f40 0x400d14c4:0x3ffb1f60 0x400d1508:0x3ffb1f80 0x400ea802:0x3ffb1fa0
 
 Rebooting...
+////
+A10     : 0x00000024  A11     : 0x00000020  A12     : 0x00000001  A13     : 0x00000001
+A14     : 0x00060d20  A15     : 0x00000000  SAR     : 0x0000000a  EXCCAUSE: 0x0000001d
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400d2884:0x3ffb1e50 0x400d26a6:0x3ffb1e90 0x400d24a3:0x3ffb1ec0 0x400d2b2e:0x3ffb1ee0 0x400d146b:0x3ffb1f60 0x400ea962:0x3ffb1fa0
+
+Rebooting...
+OBD Firmware Version 11
+Initializing modem...
+Modem info:Call Ready  SIM800 R14.18
+Waiting for GSM network...
+Telecom Network connected
+ OK
+Connecting to v-internet
+GPRS  connected
+ IoT System Connected!Ready for operation
+[29120] #0Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400d2884  PS      : 0x00060d33  A0      : 0x800d26a9  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x00002710
+A6      : 0x00000000  A7      : 0x000075c0  A8      : 0x00000024  A9      : 0x00000000
+A10     : 0x00000024  A11     : 0x00000020  A12     : 0x00000001  A13     : 0x00000001
+A14     : 0x00060d20  A15     : 0x00000000  SAR     : 0x0000000a  EXCCAUSE: 0x0000001d
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400d2884:0x3ffb1e50 0x400d26a6:0x3ffb1e90 0x400d24a3:0x3ffb1ec0 0x400d2b2e:0x3ffb1ee0 0x400d146b:0x3ffb1f60 0x400ea962:0x3ffb1fa0
+
+Rebooting...
+OBD Firmware Version 11
+Initializing modem...
+Modem info:Call Ready  SIM800 R14.18
+Waiting for GSM network...
+Telecom Network connected
+ OK
+Connecting to v-internet
+GPRS  connected
+ IoT System Connected!Ready for operation
+[28820] #0Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400d2884  PS      : 0x00060d33  A0      : 0x800d26a9  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x00002710
+A6      : 0x00000000  A7      : 0x00007494  A8      : 0x00000024  A9      : 0x00000000
+A10     : 0x00000024  A11     : 0x00000020  A12     : 0x00000001  A13     : 0x00000001
+A14     : 0x00060d20  A15     : 0x00000000  SAR     : 0x0000000a  EXCCAUSE: 0x0000001d
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400d2884:0x3ffb1e50 0x400d26a6:0x3ffb1e90 0x400d24a3:0x3ffb1ec0 0x400d2b2e:0x3ffb1ee0 0x400d146b:0x3ffb1f60 0x400ea962:0x3ffb1fa0
+
+Rebooting...
+OBD Firmware Version 11
+Initializing modem...
+
+--- exit ---
+Exception in thread rx:
+Traceback (most recent call last):
+  File "C:\Python27\Lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "C:\Python27\Lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "c:\users\thao\.platformio\penv\lib\site-packages\serial\tools\miniterm.py", line 445, in reader
+    data = self.serial.read(self.serial.in_waiting or 1)
+  File "c:\users\thao\.platformio\penv\lib\site-packages\serial\serialwin32.py", line 257, in in_waiting
+    raise SerialException("ClearCommError failed ({!r})".format(ctypes.WinError()))
+SerialException: ClearCommError failed (WindowsError(5, 'Access is denied.'))

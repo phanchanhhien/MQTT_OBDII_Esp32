@@ -12,7 +12,7 @@
 
 #define SPI_SAFE_MODE 0
 //#define DEBUG Serial
-
+////////////////////////////////
 #ifdef DEBUG
 void debugOutput(const char *s)
 {
@@ -22,7 +22,7 @@ void debugOutput(const char *s)
 	DEBUG.println(s);
 }
 #endif
-
+/////////////////////////////////
 #if USE_SOFT_SERIAL
 
 static uint32_t inline IRAM_ATTR getCycleCount()
@@ -31,7 +31,7 @@ static uint32_t inline IRAM_ATTR getCycleCount()
 	__asm__ __volatile__("esync; rsr %0,ccount":"=a" (ccount));
 	return ccount;
 }
-
+///////////////////////////////////////
 static uint8_t inline IRAM_ATTR readRxPin()
 {
 #if PIN_OBD_UART_RX < 32
