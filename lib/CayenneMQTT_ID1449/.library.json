@@ -1,0 +1,49 @@
+{
+    "description": "Connect a device to the Cayenne dashboard using MQTT.", 
+    "repository": {
+        "url": "https://github.com/myDevicesIoT/Cayenne-MQTT-Arduino", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "atmelavr", 
+        "atmelsam", 
+        "espressif32", 
+        "espressif8266", 
+        "intel_arc32", 
+        "microchippic32", 
+        "nordicnrf51", 
+        "nordicnrf52", 
+        "ststm32", 
+        "teensy", 
+        "timsp430"
+    ], 
+    "export": {
+        "exclude": [
+            "extras", 
+            "docs", 
+            "tests", 
+            "test", 
+            "*.doxyfile", 
+            "*.pdf"
+        ], 
+        "include": null
+    }, 
+    "authors": [
+        {
+            "maintainer": true, 
+            "name": "myDevices", 
+            "url": null, 
+            "email": null
+        }
+    ], 
+    "keywords": [
+        "communication"
+    ], 
+    "id": 1449, 
+    "name": "CayenneMQTT", 
+    "frameworks": [
+        "arduino"
+    ], 
+    "version": "1.2.0", 
+    "homepage": "http://www.cayenne-mydevices.com/"
+}

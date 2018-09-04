@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """ESP Exception Decoder
 
@@ -290,10 +290,11 @@ if __name__ == "__main__":
         file = open(args.file, "r")
 
     addr2line = os.path.join(os.path.abspath(os.path.expanduser(args.tool)),
-                             "bin/xtensa-" + PLATFORMS[args.platform] + "-elf-addr2line")
-    if not os.path.exists(addr2line):
-        print("ERROR: addr2line not found (" + addr2line + ")")
+                             "bin\\xtensa-" + PLATFORMS[args.platform] + "-elf-addr2line")
+   # print(os.stat(addr2line))
 
+    if not os.path.lexists(addr2line):
+        print("ERROR: addr2line not found (" + addr2line + ")")
     elf_file = os.path.abspath(os.path.expanduser(args.elf))
     if not os.path.exists(elf_file):
         print("ERROR: elf file not found (" + elf_file + ")")

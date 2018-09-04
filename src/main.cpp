@@ -172,7 +172,7 @@ SDLogger store;
 #endif
 */
 //////////////////////////////////////////////////////////////////
-COBDSPI obd;
+COBDSPI* obd = new COBDSPI;
 void printTimeoutStats() 
 {
   Serial.print("Timeouts: OBD:");
@@ -299,7 +299,7 @@ void setup() {
   SerialMon.begin(115200);
    
   //config OBD interface
-  byte ver = obd.begin();
+  byte ver = obd->begin();
   Serial.print("OBD Firmware Version ");
   Serial.println(ver);
   //Config Modem interface
@@ -313,7 +313,7 @@ void setup() {
   //delay(15000);
   // Restart takes quite some time
   // To skip it, call init() instead of restart()
-  Starting_modem();
+  //Starting_modem();
   
   // MQTT Broker setup
   mqtt.setServer(broker, MQTT_port);
@@ -440,7 +440,7 @@ digitalWrite(PIN_LED, HIGH);
   if (!connected) {
     digitalWrite(PIN_LED, HIGH);
     Serial.print("Connecting to OBD...");
-    if (obd.init()) {
+    if (obd->init()) {
       Serial.println("OK");
       connected = true;
     } else {
@@ -456,31 +456,31 @@ digitalWrite(PIN_LED, HIGH);
   Serial.print("] #");
   Serial.print(count++);
 
-  if (obd.readPID(PID_RPM, value)) {
+  if (obd->readPID(PID_RPM, value)) {
     Serial.print(" RPM:");
     Serial.println(value);
-// MQTT_pub_int(rpmTopic,value);
+ MQTT_pub_int(rpmTopic,value);
   }
-  if (obd.readPID(PID_SPEED, value)) {
+  if (obd->readPID(PID_SPEED, value)) {
     Serial.print(" SPEED:");
     Serial.println(value);
   }
-  if (obd.readPID(PID_ENGINE_FUEL_RATE,value)){
+  if (obd->readPID(PID_ENGINE_FUEL_RATE,value)){
     Serial.print("Fuel Rate in l/h: ");
     Serial.print(value);
- // MQTT_pub_int(fuelRateTopic,value);
+ MQTT_pub_int(fuelRateTopic,value);
   }
-  float volt = obd.getVoltage();
+  float volt = obd->getVoltage();
   Serial.print(" BATTERY:");
   Serial.print(volt);
   Serial.print('V');
- // MQTT_pub_float(battTopic,volt);
+  MQTT_pub_float(battTopic,volt);
  mqtt.publish(battTopic,makeFloatData("batt","v",(float)volt));
 
-  if (obd.errors > 2) {
+  if (obd->errors > 2) {
     Serial.println("OBD disconnected");
     connected = false;
-    obd.reset();
+    obd->reset();
   }
   MQTT_processing();  // Make sure server connection 
   digitalWrite(PIN_LED, LOW);

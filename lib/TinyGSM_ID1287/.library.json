@@ -1,0 +1,67 @@
+{
+    "name": "TinyGSM", 
+    "repository": {
+        "url": "https://github.com/vshymanskyy/TinyGSM.git", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "atmelavr", 
+        "atmelsam", 
+        "espressif32", 
+        "espressif8266", 
+        "intel_arc32", 
+        "linux_arm", 
+        "microchippic32", 
+        "nordicnrf51", 
+        "nordicnrf52", 
+        "ststm32", 
+        "teensy", 
+        "timsp430", 
+        "titiva"
+    ], 
+    "frameworks": [
+        "energia", 
+        "wiringpi", 
+        "arduino"
+    ], 
+    "version": "0.3.5", 
+    "export": {
+        "exclude": [
+            "extras/*", 
+            "tools/*"
+        ]
+    }, 
+    "examples": "examples/*/*.ino", 
+    "authors": [
+        {
+            "maintainer": true, 
+            "name": "Volodymyr Shymanskyy", 
+            "url": "https://github.com/vshymanskyy", 
+            "email": null
+        }
+    ], 
+    "keywords": [
+        "sim800", 
+        "esp8266", 
+        "sim808", 
+        "sim968", 
+        "sim900a", 
+        "sim900d", 
+        "sim868", 
+        "sim908", 
+        "sim800c", 
+        "sim800a", 
+        "at commands", 
+        "at", 
+        "a7", 
+        "a6", 
+        "sim900", 
+        "m590", 
+        "sim800h", 
+        "gsm", 
+        "sim800l"
+    ], 
+    "homepage": "https://github.com/vshymanskyy/TinyGSM", 
+    "id": 1287, 
+    "description": "A small Arduino library for GPRS modules, that just works. Includes examples for Blynk, MQTT, File Download, and Web Client. Supports GSM modules with AT command interface: SIM800, SIM800A, SIM800C, SIM800L, SIM800H, SIM808, SIM868, SIM900, SIM900A, SIM900D, SIM908, SIM968"
+}

@@ -809,6 +809,10 @@ int COBDSPI::sendCommand(const char* cmd, char* buf, int bufsize, unsigned int t
 {
 	uint32_t t = millis();
 	int n;
+	Serial.print(xPortGetFreeHeapSize());
+	Serial.print("DB_SendOBD: ");Serial.print(cmd);Serial.print("DB_Rev: ");
+   	Serial.print(xPortGetFreeHeapSize());
+
 	do {
 		write(cmd);
 		delay(20);
@@ -820,6 +824,8 @@ int COBDSPI::sendCommand(const char* cmd, char* buf, int bufsize, unsigned int t
 	  		break;
 		}
 	} while (millis() - t < timeout);
+			Serial.println(n);
+
 	return n;
 }
 

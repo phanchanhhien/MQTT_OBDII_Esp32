@@ -1,0 +1,41 @@
+{
+    "name": "StreamDebugger", 
+    "repository": {
+        "url": "https://github.com/vshymanskyy/StreamDebugger.git", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "atmelavr", 
+        "atmelsam", 
+        "espressif8266", 
+        "intel_arc32", 
+        "linux_arm", 
+        "microchippic32", 
+        "nordicnrf51", 
+        "teensy", 
+        "timsp430", 
+        "titiva"
+    ], 
+    "frameworks": [
+        "energia", 
+        "wiringpi", 
+        "arduino"
+    ], 
+    "version": "1.0.1", 
+    "authors": [
+        {
+            "maintainer": true, 
+            "name": "Volodymyr Shymanskyy", 
+            "url": "https://github.com/vshymanskyy", 
+            "email": null
+        }
+    ], 
+    "keywords": [
+        "debug", 
+        "serial", 
+        "stream"
+    ], 
+    "homepage": "https://github.com/vshymanskyy/StreamDebugger", 
+    "id": 1286, 
+    "description": "Debugger for Arduino Stream-based communication. This class is an Arduino Stream, that dumps all data to another Stream for debug purposes."
+}

@@ -75,3 +75,159 @@ Traceback (most recent call last):
   File "c:\users\thao\.platformio\penv\lib\site-packages\serial\serialwin32.py", line 257, in in_waiting
     raise SerialException("ClearCommError failed ({!r})".format(ctypes.WinError()))
 SerialException: ClearCommError failed (WindowsError(5, 'Access is denied.'))
+
+//////////
+ebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+DB_Rev: 0D: ATI
+OBD Firmware Version 0
+Connecting to OBD...Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+Core 1 register dump:
+PC      : 0x400ea100  PS      : 0x00060b30  A0      : 0x800e994d  A1      : 0x3ffb1e50
+A2      : 0x00000000  A3      : 0x3ffb25f0  A4      : 0x00000009  A5      : 0x00000040
+A6      : 0x00000010  A7      : 0x3ffb0040  A8      : 0x00000003  A9      : 0x00000001
+A10     : 0x3ffb25f0  A11     : 0x00000001  A12     : 0x00000050  A13     : 0x00000020
+A14     : 0xff000000  A15     : 0x00000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c349  LEND    : 0x4000c36b  LCOUNT  : 0xffffffff
+
+Backtrace: 0x400ea100:0x3ffb1e50 0x400e994a:0x3ffb1e70 0x400d1f79:0x3ffb1e90 0x400d1fa7:0x3ffb1eb0 0x400d258d:0x3ffb1ee0 0x400d14cd:0x3ffb1f60 0x400ea232:0x3ffb1fa0
+
+Rebooting...
+
+
+--- Miniterm on COM11  115200,8,N,1 ---
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+DB_Rev: 2906640
+DB_Rev: 2906640D: ATI
+DB_Rev: 2906640D: ATI
+OBD Firmware Version 0
+DB_Rev: 290164Guru Medita
