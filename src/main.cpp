@@ -172,7 +172,7 @@ SDLogger store;
 #endif
 */
 //////////////////////////////////////////////////////////////////
-COBDSPI* obd = new COBDSPI;
+COBDSPI obd;
 void printTimeoutStats() 
 {
   Serial.print("Timeouts: OBD:");
@@ -299,9 +299,9 @@ void setup() {
   SerialMon.begin(115200);
    
   //config OBD interface
-  byte ver = obd->begin();
-  Serial.print("OBD Firmware Version ");
-  Serial.println(ver);
+  //byte ver = obd.begin();
+  //Serial.print("OBD Firmware Version ");
+ // Serial.println(ver);
   //Config Modem interface
   SerialAT.begin(115200,SERIAL_8N1,16,17,false);//hardware UART #1 in Esp32
   //sys.xbBegin(115200);
@@ -428,24 +428,38 @@ void test_MQTT_cayenne(){
     }
   }
 }
+/////
+void initOBD(){
+  Serial.print("OBD begin:...");
+  byte ver = obd.begin();
+  Serial.print("OBD Firmware Version ");
+  Serial.println(ver);
+  Serial.println("OBD init..");
+   if(obd.init()) {
+      Serial.println("OK");
+      connected = true;
+    } else {
+      Serial.println("fail");
+    }
+}
 ////
-
+void test_OBD()
+{
+  //config OBD interface
+    initOBD();
+    while(1);  
+}
 
 /////////////////////////////////////////
 void loop() {
+//test_OBD();  
  // uint32_t ts = millis();
 digitalWrite(PIN_LED, HIGH);
   
 //#if CONNECT_OBD
   if (!connected) {
     digitalWrite(PIN_LED, HIGH);
-    Serial.print("Connecting to OBD...");
-    if (obd->init()) {
-      Serial.println("OK");
-      connected = true;
-    } else {
-      Serial.println("OBD...connect fail");
-    }
+    initOBD();
     digitalWrite(PIN_LED, LOW);
     return;
   }
@@ -456,31 +470,31 @@ digitalWrite(PIN_LED, HIGH);
   Serial.print("] #");
   Serial.print(count++);
 
-  if (obd->readPID(PID_RPM, value)) {
+  if (obd.readPID(PID_RPM, value)) {
     Serial.print(" RPM:");
     Serial.println(value);
  MQTT_pub_int(rpmTopic,value);
   }
-  if (obd->readPID(PID_SPEED, value)) {
+  if (obd.readPID(PID_SPEED, value)) {
     Serial.print(" SPEED:");
     Serial.println(value);
   }
-  if (obd->readPID(PID_ENGINE_FUEL_RATE,value)){
+  if (obd.readPID(PID_ENGINE_FUEL_RATE,value)){
     Serial.print("Fuel Rate in l/h: ");
     Serial.print(value);
  MQTT_pub_int(fuelRateTopic,value);
   }
-  float volt = obd->getVoltage();
+  float volt = obd.getVoltage();
   Serial.print(" BATTERY:");
   Serial.print(volt);
   Serial.print('V');
   MQTT_pub_float(battTopic,volt);
  mqtt.publish(battTopic,makeFloatData("batt","v",(float)volt));
 
-  if (obd->errors > 2) {
+  if (obd.errors > 2) {
     Serial.println("OBD disconnected");
     connected = false;
-    obd->reset();
+    obd.reset();
   }
   MQTT_processing();  // Make sure server connection 
   digitalWrite(PIN_LED, LOW);

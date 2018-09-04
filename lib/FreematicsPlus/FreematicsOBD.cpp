@@ -687,22 +687,29 @@ int16_t COBD::getTemperatureValue(char* data)
 }
 
 /*************************************************************************
-* OBD-II SPI bridge
+* OBD-II SPI bridge 
 *************************************************************************/
 
 byte COBDSPI::begin()
-{
+{  
+	byte ver = 0;
+#ifdef DEBUG
+	debugOutput("SPI begin");
+#endif
 	pinMode(SPI_PIN_READY, INPUT);
 	pinMode(SPI_PIN_CS, OUTPUT);
 	digitalWrite(SPI_PIN_CS, HIGH);
 	SPI.begin();
 	SPI.setFrequency(SPI_FREQ);
 	delay(50);
-	byte ver = getVersion();
-	if (ver == 0) end();
+//  ver = getVersion();
+//	if (ver == 0) end();
 	return ver;
+#ifdef DEBUG
+	debugOutput("SPI ready");
+#endif	
 }
-
+////////////////////////////////////////
 void COBDSPI::end()
 {
 	SPI.end();
@@ -787,7 +794,7 @@ int COBDSPI::receive(char* buffer, int bufsize, unsigned int timeout)
 	while (digitalRead(SPI_PIN_READY) == LOW) delay(1);
 	return n;
 }
-
+//////////////////////////////////////
 void COBDSPI::write(const char* s)
 {
 #ifdef DEBUG
@@ -809,11 +816,7 @@ int COBDSPI::sendCommand(const char* cmd, char* buf, int bufsize, unsigned int t
 {
 	uint32_t t = millis();
 	int n;
-	Serial.print(xPortGetFreeHeapSize());
-	Serial.print("DB_SendOBD: ");Serial.print(cmd);Serial.print("DB_Rev: ");
-   	Serial.print(xPortGetFreeHeapSize());
-
-	do {
+		do {
 		write(cmd);
 		delay(20);
 		n = receive(buf, bufsize, timeout);
@@ -824,21 +827,24 @@ int COBDSPI::sendCommand(const char* cmd, char* buf, int bufsize, unsigned int t
 	  		break;
 		}
 	} while (millis() - t < timeout);
-			Serial.println(n);
 
 	return n;
 }
 
 COBD* createOBD()
-{
+{   Serial.println("Creating OBD");
     COBD* obd = new COBD;
     if (!obd->begin()) {
-        delete obd;    
+        delete obd; 
+					Serial.println("delete UART OBD");
+   
         obd = new COBDSPI;
         if (!obd->begin()) {
 			delete obd;
+			Serial.println("delete SPI OBD");
 			obd = 0;
 		}
+		else Serial.println("OBDSPI created");
     }
 	return obd;
 }
