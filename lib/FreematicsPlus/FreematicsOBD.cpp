@@ -171,7 +171,7 @@ int COBD::sendCommand(const char* cmd, char* buf, int bufsize, unsigned int time
 bool COBD::readPID(byte pid, int& result)
 {
 	char buffer[64];
-	char* data = 0;
+	char *data = new char[64];   //must using init pointer to prevent Null Pointer dereference exception 
 	sprintf(buffer, "%02X%02X\r", dataMode, pid);
 	write(buffer);
 	delay(1);
@@ -201,6 +201,7 @@ bool COBD::readPID(byte pid, int& result)
 		return false;
 	}
 	result = normalizeData(pid, data);
+	//free(data);
 	return true;
 /*
 	char buffer[64];
@@ -811,7 +812,7 @@ void COBDSPI::write(const char* s)
 	delay(1);
 	digitalWrite(SPI_PIN_CS, HIGH);
 }
-
+//////////////////////////////////////////////////
 int COBDSPI::sendCommand(const char* cmd, char* buf, int bufsize, unsigned int timeout)
 {
 	uint32_t t = millis();

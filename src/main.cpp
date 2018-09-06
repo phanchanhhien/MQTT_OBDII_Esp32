@@ -313,7 +313,7 @@ void setup() {
   //delay(15000);
   // Restart takes quite some time
   // To skip it, call init() instead of restart()
-  //Starting_modem();
+  Starting_modem();
   
   // MQTT Broker setup
   mqtt.setServer(broker, MQTT_port);
@@ -447,7 +447,48 @@ void test_OBD()
 {
   //config OBD interface
     initOBD();
-    while(1);  
+    while(1)
+    {
+     if (!connected) {
+    digitalWrite(PIN_LED, HIGH);
+    initOBD();
+    digitalWrite(PIN_LED, LOW);
+   // return;
+  }
+       int value;
+  Serial.print('[');
+  Serial.print(millis());
+  Serial.print("] #");
+  Serial.print(count++);
+//#if CONNECT_OBD
+    Serial.print(" RPM:");
+  if (obd.readPID(PID_RPM, value)) {
+
+    Serial.print(value);
+  }
+
+  Serial.print(" SPEED:");
+  if (obd.readPID(PID_SPEED, value)) {
+    Serial.print(value);
+  }
+//#endif
+  Serial.print(" BATTERY:");
+  Serial.print(obd.getVoltage());
+  Serial.print('V');
+#ifdef ESP32
+  int temp = (int)readChipTemperature() * 165 / 255 - 40;
+  Serial.print(" CPU TEMP:");
+  Serial.print(temp);
+#endif
+  Serial.println();
+  if (obd.errors > 2) {
+    Serial.println("OBD disconnected");
+    connected = false;
+    obd.reset();
+  }
+  digitalWrite(PIN_LED, LOW);
+  delay(100);
+    }
 }
 
 /////////////////////////////////////////
@@ -461,7 +502,7 @@ digitalWrite(PIN_LED, HIGH);
     digitalWrite(PIN_LED, HIGH);
     initOBD();
     digitalWrite(PIN_LED, LOW);
-    return;
+   // return;
   }
 //#endif
   int value;
@@ -469,23 +510,29 @@ digitalWrite(PIN_LED, HIGH);
   Serial.print(millis());
   Serial.print("] #");
   Serial.print(count++);
-
+  
+    Serial.print(" Read RPM:..");
   if (obd.readPID(PID_RPM, value)) {
-    Serial.print(" RPM:");
     Serial.println(value);
- MQTT_pub_int(rpmTopic,value);
-  }
+        Serial.print(" Send RPM to Server..");
+
+ MQTT_pub_int(rpmTopic,value); }
+  
+      Serial.print(" Read SPEED:..");
   if (obd.readPID(PID_SPEED, value)) {
-    Serial.print(" SPEED:");
     Serial.println(value);
   }
+  
+   Serial.print("Read Fuel Rate in l/h:.. ");
+  
   if (obd.readPID(PID_ENGINE_FUEL_RATE,value)){
-    Serial.print("Fuel Rate in l/h: ");
     Serial.print(value);
  MQTT_pub_int(fuelRateTopic,value);
   }
+  
+    Serial.print(" BATTERY:");
+
   float volt = obd.getVoltage();
-  Serial.print(" BATTERY:");
   Serial.print(volt);
   Serial.print('V');
   MQTT_pub_float(battTopic,volt);
